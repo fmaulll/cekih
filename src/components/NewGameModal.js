@@ -14,6 +14,7 @@ const NewGameModal = () => {
       justifyContent="center"
       h="100vh"
       alignItems="center"
+      maxW="full"
     >
       <Box
         backgroundColor="white"

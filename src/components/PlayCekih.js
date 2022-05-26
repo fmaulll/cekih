@@ -100,7 +100,6 @@ const PlayCekih = () => {
             backgroundColor={player.id === playerId ? "blue.600" : "white"}
             color={player.id === playerId ? "white" : "black"}
             p="5"
-            maxW="96"
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
@@ -119,10 +118,9 @@ const PlayCekih = () => {
           display="flex"
           mt="4"
           justifyContent="center"
-          w="95%"
           backgroundColor="white"
           p="5"
-          maxW="96"
+          w="95%"
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
