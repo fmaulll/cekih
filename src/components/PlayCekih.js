@@ -16,7 +16,9 @@ const PlayCekih = () => {
   const dispatch = useDispatch();
   const players = useSelector((state) => state.players.players);
   const show = useSelector((state) => state.players.isShow);
-  const showNewGameModal = useSelector((state)=>state.players.isShowNewGameModal)
+  const showNewGameModal = useSelector(
+    (state) => state.players.isShowNewGameModal
+  );
   const [playerId, setPlayerId] = useState("");
   const [point, setPoint] = useState("");
   const [error, setError] = useState(false);
@@ -46,16 +48,20 @@ const PlayCekih = () => {
   };
 
   const minusPointHandler = () => {
-    const playerStringify = localStorage.getItem("players");
-    const playerObject = JSON.parse(playerStringify);
-    const playerIndex = playerObject.findIndex(
-      (player) => player.id === playerId
-    );
-    playerObject[playerIndex].point -= parseInt(point);
-    dispatch(playerActions.minusPoint({ id: playerId, point: point }));
-    localStorage.clear("players");
-    localStorage.setItem("players", JSON.stringify(playerObject));
-    setPoint("");
+    if (point === "") {
+      setError(true);
+    } else {
+      const playerStringify = localStorage.getItem("players");
+      const playerObject = JSON.parse(playerStringify);
+      const playerIndex = playerObject.findIndex(
+        (player) => player.id === playerId
+      );
+      playerObject[playerIndex].point -= parseInt(point);
+      dispatch(playerActions.minusPoint({ id: playerId, point: point }));
+      localStorage.clear("players");
+      localStorage.setItem("players", JSON.stringify(playerObject));
+      setPoint("");
+    }
   };
 
   const newGameHandler = () => {
@@ -76,7 +82,7 @@ const PlayCekih = () => {
   return (
     <>
       {show ? <NewPlayer /> : ""}
-      {showNewGameModal? <NewGameModal /> : ""}
+      {showNewGameModal ? <NewGameModal /> : ""}
       <Container
         w="100%"
         display="flex"
@@ -125,10 +131,12 @@ const PlayCekih = () => {
             <Input
               textAlign="center"
               type="number"
-              placeholder={error ? "Input number is empty!" :"Insert number"}
-              borderColor={error ? 'red' : 'gray.200'}
+              placeholder={error ? "Input number is empty!" : "Insert number"}
+              borderColor={error ? "red" : "gray.200"}
               value={point}
-              onClick={()=>{setError(false)}}
+              onClick={() => {
+                setError(false);
+              }}
               onChange={(e) => {
                 e.preventDefault();
                 setPoint(e.target.value);
