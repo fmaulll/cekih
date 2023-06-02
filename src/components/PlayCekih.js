@@ -90,7 +90,7 @@ const PlayCekih = () => {
         flexDirection="column"
         alignItems="center"
       >
-        <Text mt="2">-- Don't forget to select the player --</Text>
+        <Text mt="2">-- Daffa, Pitak, Aqel --</Text>
         {players.map((player) => (
           <Box
             mt="4"
